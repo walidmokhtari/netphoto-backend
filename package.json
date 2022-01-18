@@ -1,0 +1,29 @@
+{
+  "name": "netphoto-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/walidmokhtari/netphoto-backend.git"
+  },
+  "author": "Walid",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/walidmokhtari/netphoto-backend/issues"
+  },
+  "homepage": "https://github.com/walidmokhtari/netphoto-backend#readme",
+  "dependencies": {
+    "body-parser": "^1.19.1",
+    "dotenv": "^12.0.4",
+    "express": "^4.17.2",
+    "mongoose": "^6.1.6"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
