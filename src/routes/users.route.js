@@ -1,6 +1,12 @@
 const express = require('express');
 const router = express.Router();
+const userController = require('../controllers/user.controller');
+const verifyToken = require('../helpers/verifyToken');
 
-router.get('/register');
+router.post('/register', userController.register);
+router.post('/login', userController.login);
+router.post('/delete-user',verifyToken, userController.deleteUser);
+router.get('/get-user',verifyToken,userController.getUser);
+router.put('/update-user',verifyToken,userController.updateUser);
 
 module.exports = router;

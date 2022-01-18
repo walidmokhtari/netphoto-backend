@@ -18,9 +18,11 @@
   },
   "homepage": "https://github.com/walidmokhtari/netphoto-backend#readme",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "body-parser": "^1.19.1",
     "dotenv": "^12.0.4",
     "express": "^4.17.2",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.1.6"
   },
   "devDependencies": {
