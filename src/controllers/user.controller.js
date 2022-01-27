@@ -14,7 +14,7 @@ exports.register = (req,res) => {
         password: hashedPassword,
         isAdmin: false,
     });
-
+    
     user
     .save()
     .then((user) => {

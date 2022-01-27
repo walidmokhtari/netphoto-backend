@@ -1,11 +1,14 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const config = require("../configs");
+var cors = require('cors');
 const port = config.server.port;
 const apiRouter = require('../routes');
 
 //My app created by express
 const app = express();
+//Acces autorization
+app.use(cors());
 //Body requests control
 app.use(bodyParser.json());
 //Routers
