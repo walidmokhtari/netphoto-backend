@@ -15,6 +15,7 @@ module.exports = {
                 {
                     title: args.title,
                     description: args.description,
+                    image: args.image,
                     video: args.video,
                     type: args.type,
                     publicationDate: args.publicationDate
@@ -22,8 +23,8 @@ module.exports = {
             )
             return newMovie.save();
         },
-        updateMovie(parent, {id, title, description, video, type, publicationDate}) {
-            return Movie.findByIdAndUpdate(id, { title: title, description: description, video: video, type: type, publicationDate: publicationDate });
+        updateMovie(parent, {id, title, description, image, video, type, publicationDate}) {
+            return Movie.findByIdAndUpdate(id, { title: title, description: description,image: image, video: video, type: type, publicationDate: publicationDate });
         }
     }
 }

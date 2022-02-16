@@ -5,6 +5,7 @@ module.exports = gql`
         id: ID
         title: String
         description: String
+        image: String
         video: String
         type: String
         publicationDate: String
@@ -14,7 +15,7 @@ module.exports = gql`
         getMovie(id:ID):Movie!
     }
     type Mutation {
-        createMovie(title:String!,description: String, video:String, type:String, publicationDate:String):Movie
-        updateMovie(id:ID!,title:String!,description: String, video:String, type:String, publicationDate:String):Movie
+        createMovie(title:String!,description: String,image: String, video:String, type:String, publicationDate:String):Movie
+        updateMovie(id:ID!,title:String!,description: String,image: String, video:String, type:String, publicationDate:String):Movie
     }
 `
