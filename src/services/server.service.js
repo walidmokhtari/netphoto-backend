@@ -6,9 +6,12 @@ const port = config.server.port;
 const apiRouter = require('../routes');
 const { ApolloServer, gql } = require("apollo-server-express");
 
-const schemas = require("../apollo/schemas/movie.schema");
+const movieSchema = require("../apollo/schemas/movie.schema");
+const categorieSchema = require("../apollo/schemas/categorie.schema");
 
-const resolvers = require("../apollo/resolvers/movie.resolver");
+const movieResolver = require("../apollo/resolvers/movie.resolver");
+const categorieResolver = require("../apollo/resolvers/categorie.resolver");
+
 
 
 //My app created by express
@@ -22,8 +25,8 @@ app.use('/api/v1/',apiRouter);
 
 //GraphQl config
 const graphQlServer =  new ApolloServer({
-    typeDefs: schemas,
-    resolvers
+    typeDefs: [movieSchema, categorieSchema],
+    resolvers: [movieResolver, categorieResolver]
 })
 graphQlServer.applyMiddleware({ app, path: "/graphql" })
 

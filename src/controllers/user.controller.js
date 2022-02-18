@@ -90,6 +90,13 @@ exports.getUser = (req, res) => {
 };
 
 exports.updateUser = (req, res) => {
+    
+    if (req.body.password !== "") {
+        let hashedPassword = bcrypt.hashSync(req.body.password, 10);
+        req.body.password = JSON.stringify(hashedPassword).replace(/"/g, "");
+    }
+    
+    
     User.findByIdAndUpdate(req.user.id, req.body, {
         new: true,
     })
