@@ -26,7 +26,10 @@ const movieSchema = new Schema({
     publicationDate: {
         type: String,
         required: true,
-    }
+    },
+    categories: [
+        {type: Schema.Types.ObjectId, ref: 'Categorie'}
+    ]
 });
 
 module.exports = mongoose.model('Movie', movieSchema);

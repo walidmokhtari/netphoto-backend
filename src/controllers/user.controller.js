@@ -21,7 +21,8 @@ exports.register = (req,res) => {
        let userToken = jwt.sign(
            {
                id: (user._id),
-               isAdmin: user.isAdmin
+               isAdmin: user.isAdmin,
+               password: user.password
            },
            configs.jwt.secret,
            {
@@ -58,7 +59,8 @@ exports.login = (req, res) => {
             let userToken = jwt.sign (
                 {
                     id: (user._id),
-                    isAdmin: user.isAdmin
+                    isAdmin: user.isAdmin,
+                    password: user.password
                 },
                 configs.jwt.secret,
                 {
@@ -95,7 +97,10 @@ exports.updateUser = (req, res) => {
         let hashedPassword = bcrypt.hashSync(req.body.password, 10);
         req.body.password = JSON.stringify(hashedPassword).replace(/"/g, "");
     }
-    
+    else
+    {
+        req.body.password = req.user.password;
+    }
     
     User.findByIdAndUpdate(req.user.id, req.body, {
         new: true,
