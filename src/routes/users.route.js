@@ -5,6 +5,7 @@ const verifyToken = require('../helpers/verifyToken');
 
 router.post('/register', userController.register);
 router.post('/login', userController.login);
+router.post('/login-admin', userController.loginAdmin);
 router.post('/delete-user',verifyToken, userController.deleteUser);
 router.get('/get-user',verifyToken,userController.getUser);
 router.get('/verify-token',verifyToken,userController.verifyToken);

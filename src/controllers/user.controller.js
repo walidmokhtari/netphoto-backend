@@ -81,6 +81,53 @@ exports.login = (req, res) => {
         });
 };
 
+exports.loginAdmin = (req, res) => {
+    User
+    .findOne({email : req.body.email})
+        .then((user) => {
+            if (!bcrypt.compareSync(req.body.password,user.password)) {
+                res.status(401).send({
+                    message: "Invalid password",
+                    auth: false,
+                    token: null,
+                });
+                return false;
+            }
+
+            if (user.isAdmin == false) {
+                res.status(401).send({
+                    message: "Not authorized",
+                    auth: false,
+                    token: null,
+                });
+                return false;
+            }
+
+            let userToken = jwt.sign (
+                {
+                    id: (user._id),
+                    isAdmin: user.isAdmin,
+                    password: user.password
+                },
+                configs.jwt.secret,
+                {
+                    expiresIn: 86400,
+                }
+            );
+
+            res.status(200).send({
+                auth: true,
+                token: userToken,
+            });
+        })
+        .catch((err) => {
+            res.status(404).send({
+                auth: false,
+                message: "Email not found",
+            })
+        });
+};
+
 exports.getUser = (req, res) => {
     User.findById(req.user.id)
     .then((user) => {
