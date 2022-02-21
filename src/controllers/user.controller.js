@@ -180,6 +180,6 @@ exports.deleteUser = (req, res) => {
 
 exports.verifyToken = (req, res) => {
     if (req.user) {
-        res.status(200).json({verify:true});
+        res.status(200).json({verify:true, admin: req.user.isAdmin});
     }
 }
