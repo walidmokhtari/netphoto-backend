@@ -12,6 +12,7 @@ exports.register = (req,res) => {
         lastName: req.body.lastName,
         email: req.body.email,
         password: hashedPassword,
+        wishlist: [],
         isAdmin: false,
     });
     
@@ -149,6 +150,23 @@ exports.updateUser = (req, res) => {
         req.body.password = req.user.password;
     }
     
+    User.findByIdAndUpdate(req.user.id, req.body, {
+        new: true,
+    })
+    .then((data) => {
+        res.status(200).send({
+            message: "User has been modified"
+        });
+    })
+    .catch((err) => {
+        res.status(500).json({
+            err: err
+        });
+    })
+};
+
+exports.updateWishListUser = (req, res) => {
+
     User.findByIdAndUpdate(req.user.id, req.body, {
         new: true,
     })

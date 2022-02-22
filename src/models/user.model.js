@@ -21,6 +21,9 @@ const userSchema = new Schema({
         type: String,
         required: true,
     },
+    wishlist: [
+        {type: Schema.Types.ObjectId, ref: 'Movie'}
+    ],
     isAdmin: {
         type: Boolean,
         required: true,

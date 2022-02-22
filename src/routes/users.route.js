@@ -10,5 +10,6 @@ router.post('/delete-user',verifyToken, userController.deleteUser);
 router.get('/get-user',verifyToken,userController.getUser);
 router.get('/verify-token',verifyToken,userController.verifyToken);
 router.put('/update-user',verifyToken,userController.updateUser);
+router.patch('/wishlist-user',verifyToken,userController.updateWishListUser);
 
 module.exports = router;
