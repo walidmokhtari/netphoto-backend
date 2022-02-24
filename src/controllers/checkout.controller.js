@@ -17,7 +17,7 @@ const initiateStripeSession = async (req) => {
     payment_method_types: ["card"],
     line_items: subscriptionData,
     payment_intent_data: {
-      metadata: { userId: req.user.id },
+      metadata: { userId: req.user.id, subscriptionData: req.body.subscription },
     },
     mode: "payment",
     success_url: `${process.env.URL_CLIENT}subscription/confirmation?subscription=${req.body.subscription}`,

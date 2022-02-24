@@ -36,12 +36,13 @@ exports.stripewebhook = (req, res) => {
 
     case "payment_intent.succeeded":
 
-        User.findByIdAndUpdate(data.object.metadata.userId, {subscription: "teststt"}, {
+        User.findByIdAndUpdate(data.object.metadata.userId, {subscription: data.object.metadata.subscriptionData}, {
             new: true,
         })
         .then(() => {
             console.log("Succceessssssss")
             res.sendStatus(200);
+            return;
         })
         .catch(() => {
             console.log("Errrrooooooorrr")
