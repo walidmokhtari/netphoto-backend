@@ -22,7 +22,7 @@ const initiateStripeSession = async (req) => {
     },
     mode: "payment",
     success_url: `${process.env.URL_CLIENT}subscription/confirmation?subscription=${req.body.subscription}`,
-    cancel_url: `${process.env.URL_CLIENT}subscription/cancel`,
+    cancel_url: `${process.env.URL_CLIENT}subscription`,
   });
   return session;
 };
