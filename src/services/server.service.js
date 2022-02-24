@@ -19,7 +19,15 @@ const app = express();
 //Acces autorization
 app.use(cors());
 //Body requests control
-app.use(bodyParser.json());
+//app.use(bodyParser.json());
+//Webhooks
+app.use(function (req, res, next) {
+    if (req.originalUrl === "/api/v1/webhooks/stripe") {
+      next();
+    } else {
+      express.json()(req, res, next);
+    }
+});
 //Routers
 app.use('/api/v1/',apiRouter);
 

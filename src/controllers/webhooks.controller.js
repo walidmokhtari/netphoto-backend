@@ -8,15 +8,13 @@ exports.stripewebhook = (req, res) => {
 
   let data;
   let eventType;
- console.log("stripe == ", stripeKey);
 
   const webhookSecret = webhooksKey;
-  console.log(webhookSecret);
   if (webhookSecret) {
-
+    
     let event;
     let signature = req.headers["stripe-signature"];
-    console.log("sign ==", signature);
+
     try {
       event = stripe.webhooks.constructEvent(
         req.body,
@@ -43,6 +41,7 @@ exports.stripewebhook = (req, res) => {
         })
         .then(() => {
             console.log("Succceessssssss")
+            res.sendStatus(200);
         })
         .catch(() => {
             console.log("Errrrooooooorrr")
@@ -53,5 +52,5 @@ exports.stripewebhook = (req, res) => {
     default:
       
   }
-  res.sendStatus(200);
+  
 };
