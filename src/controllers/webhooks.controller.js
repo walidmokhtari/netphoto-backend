@@ -1,6 +1,7 @@
 const config = require("../configs");
 const stripeKey = config.stripe.key;
 const stripe = require("stripe")(stripeKey);
+const webhooksKey = config.webhooks.key;
 const User = require('../models/user.model');
 
 exports.stripewebhook = (req, res) => {
@@ -9,8 +10,8 @@ exports.stripewebhook = (req, res) => {
   let eventType;
  console.log("stripe == ", stripeKey);
 
-  const webhookSecret = process.env.WEBHOOKSECRET;
-
+  const webhookSecret = webhooksKey;
+  console.log(webhookSecret);
   if (webhookSecret) {
 
     let event;
@@ -23,7 +24,7 @@ exports.stripewebhook = (req, res) => {
         webhookSecret
       );
     } catch (err) {
-      //console.log(`⚠️  Webhook signature verification failed.`, err);
+      console.log(`⚠️  Webhook signature verification failed.`, err);
       return res.sendStatus(400);
     }
     data = event.data;

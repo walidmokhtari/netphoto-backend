@@ -4,7 +4,6 @@ const stripe = require("stripe")(stripeKey);
 
 const initiateStripeSession = async (req) => {
 
-
     const subscriptionData = [ {
       price_data: {
         currency: "eur",
