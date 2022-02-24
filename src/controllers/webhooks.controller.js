@@ -21,7 +21,7 @@ exports.stripewebhook = (req, res) => {
       );
     } catch (err) {
       console.log(`⚠️  Webhook signature verification failed.`, err);
-      return res.sendStatus(400);
+      return res.sendStatus(400).send(err);
     }
     data = event.data;
     eventType = event.type;
