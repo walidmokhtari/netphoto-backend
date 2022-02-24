@@ -1,4 +1,4 @@
-const stripe = require("stripe")(`${process.env.STRIPE_SK}`);
+const stripe = require("stripe")(process.env.STRIPE_SK);
 const User = require('../models/user.model');
 
 exports.stripewebhook = (req, res) => {
