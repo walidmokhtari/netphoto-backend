@@ -13,6 +13,7 @@ exports.register = (req,res) => {
         email: req.body.email,
         password: hashedPassword,
         wishlist: [],
+        subscription: "",
         isAdmin: false,
     });
     

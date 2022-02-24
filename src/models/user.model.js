@@ -24,6 +24,9 @@ const userSchema = new Schema({
     wishlist: [
         {type: Schema.Types.ObjectId, ref: 'Movie'}
     ],
+    subscription: {
+        type: String
+    },
     isAdmin: {
         type: Boolean,
         required: true,
