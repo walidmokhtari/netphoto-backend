@@ -24,7 +24,8 @@ exports.register = (req,res) => {
            {
                id: (user._id),
                isAdmin: user.isAdmin,
-               password: user.password
+               password: user.password,
+               subscription: user.subscription
            },
            configs.jwt.secret,
            {
@@ -62,7 +63,8 @@ exports.login = (req, res) => {
                 {
                     id: (user._id),
                     isAdmin: user.isAdmin,
-                    password: user.password
+                    password: user.password,
+                    subscription: user.subscription
                 },
                 configs.jwt.secret,
                 {
@@ -109,7 +111,8 @@ exports.loginAdmin = (req, res) => {
                 {
                     id: (user._id),
                     isAdmin: user.isAdmin,
-                    password: user.password
+                    password: user.password,
+                    subscription: "Premium"
                 },
                 configs.jwt.secret,
                 {
@@ -133,7 +136,23 @@ exports.loginAdmin = (req, res) => {
 exports.getUser = (req, res) => {
     User.findById(req.user.id)
     .then((user) => {
-        res.send(user);
+        let userToken = jwt.sign (
+            {
+                id: (user._id),
+                isAdmin: user.isAdmin,
+                password: user.password,
+                subscription: user.subscription
+            },
+            configs.jwt.secret,
+            {
+                expiresIn: 86400,
+            }
+        );
+
+        res.send({
+          user: user,
+          token: userToken
+        });
     })
     .catch((err) => {
         res.status(404).send(err);
@@ -199,6 +218,6 @@ exports.deleteUser = (req, res) => {
 
 exports.verifyToken = (req, res) => {
     if (req.user) {
-        res.status(200).json({verify:true, admin: req.user.isAdmin});
+        res.status(200).json({verify:true, admin: req.user.isAdmin, subscription: req.user.subscription});
     }
 }
