@@ -40,12 +40,11 @@ exports.stripewebhook = (req, res) => {
             new: true,
         })
         .then(() => {
-            console.log("Succceessssssss")
             res.sendStatus(200);
             return;
         })
         .catch(() => {
-            console.log("Errrrooooooorrr")
+            console.log("Error")
         })
     
       break;
